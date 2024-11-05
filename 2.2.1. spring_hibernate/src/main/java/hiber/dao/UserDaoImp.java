@@ -49,4 +49,11 @@ public class UserDaoImp implements UserDao {
 
         return user;
     }
+
+    @Override
+    public void addCar(User user, Car car) {
+        user.setCar(car);
+        sessionFactory.getCurrentSession().update(user);
+    }
+
 }

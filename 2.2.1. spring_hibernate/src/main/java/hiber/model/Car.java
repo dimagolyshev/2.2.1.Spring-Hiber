@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
@@ -51,5 +52,18 @@ public class Car {
 
     public void setSeries(Integer series) {
         this.series = series;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(series, car.series);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series);
     }
 }
